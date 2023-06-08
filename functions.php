@@ -8,7 +8,7 @@ function selectDataFromDatabase($servername, $username, $password, $database, $t
     // SQL query to select data
     $sql = "SELECT * FROM  .Patients";
 
-    // Execute the query
+    // Execute the query   
     $result = $conn->query($sql);
 
     // Check if any rows are returned
