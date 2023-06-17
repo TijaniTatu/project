@@ -2,6 +2,8 @@
 
 require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+     // Check if the necessary fields are submitted
+     if (isset($_POST["user_name"]) && isset($_POST["password"]) && isset($_POST["firstComboBox"])) {
     // Retrieve the submitted ID and password
     $user_name = $_POST["user_name"];
     $password = $_POST["password"];
@@ -54,6 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Fields not submitted, display an error message
 echo "<br>" . "Please fill in all the required fields.";
 }
-
+}
 
 ?>
