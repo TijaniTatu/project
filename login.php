@@ -38,8 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if a matching record is found
     if ($stmt->fetch()) {
-        // Successful login, grant access
-        echo "<br>" . "Welcome $selectedTable " . $user_name;
+        // Successful login, set session variable and redirect to homepage
+        $_SESSION["user_name"] = $user_name;
+        header("Location: posthomepage.php");
+        exit();
     } else {
         // Invalid credentials, deny access
         echo "<br>" . "Invalid credentials. Please try again.";
