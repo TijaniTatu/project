@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare the query
     $stmt = $conn->prepare("SELECT user_name FROM Patients WHERE user_name = ? AND password = ?");
-    $stmt->bind_Param("ss", $user_name,$password);
+    $stmt->bind_Param("ss",$user_name,$password);
     
     // Execute the query
     $stmt->execute();

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="Login.css">
 </head>
 <body>
-    <form action= "login.php" method="POST">
+    <form method="POST" action="login.php">
     <div id="section1">
         <label id="login_statement" for="login_statement">Login as:</label> <br>
         <select id="firstComboBox" name="firstComboBox" onchange="changer()">
@@ -19,12 +19,11 @@
     <div id="section2" style="display: none;">
         <br>
             <label for="user_name">user_name:</label>
-            <input type="text" id="user_name" name="user_name" placeholder="username" required>
+            <input type="text" name="user_name" placeholder="Username">
          <br>
-            <input type="text" id="user_name"><br>
+          
              <label for="password">password:</label> 
-        <br>
-            <input type="password" id="password" name="password">
+             <input type="password" name="password" placeholder="Password">
         <br>
     </div>
     <script>
@@ -45,7 +44,7 @@
             }
         }
     </script>
-    <button id="Login_button">Login</button>
+       <button type="submit">Log In</button>
     </form>
 </body>
 </html>
