@@ -1,4 +1,5 @@
 <?php
+function patientlogin(){
 require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the submitted ID and password
@@ -23,10 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<br>"."Welcome patient " . $user_name;
     } else {
         // Invalid credentials, deny access
-        echo "Invalid credentials. Please try again.";
+        echo "<br>"."Invalid credentials. Please try again.";
     }
-
-    // Close the database connection
-    $conn = null;
+}
 }
 ?>

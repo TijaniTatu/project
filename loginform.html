@@ -18,17 +18,17 @@
     <div id="section2" style="display: none;">
         <br>
         <label for="field1">Enter Credentials:</label> <br><br>
-        <label for="credentials_id">ID:</label> <br>
-        <input type="text" id="credentials_id"><br>
-        <label for="credentials_password">Password:</label> <br>
-        <input type="password" id="credentials_password"><br>
+        <label for="user_name">user_name</label> <br>
+        <input type="text" id="user_name"><br>
+        <label for="password">password:</label> <br>
+        <input type="password" id="password"><br>
     </div>
     <script>
         function changer() {
             const firstComboBox = document.getElementById("firstComboBox");
             const section2 = document.getElementById("section2");
-            const credentialsId = document.getElementById("credentials_id");
-            const password = document.getElementById("credentials_password");
+            const user_name = document.getElementById("user_name");
+            const password = document.getElementById("password");
 
             if (firstComboBox.value !== "select_option") {
                 section2.style.display = 'block';
