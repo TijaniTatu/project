@@ -2,8 +2,6 @@
 
 require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-     // Check if the necessary fields are submitted
-     if (isset($_POST["user_name"]) && isset($_POST["password"]) && isset($_POST["firstComboBox"])) {
     // Retrieve the submitted ID and password
     $user_name = $_POST["user_name"];
     $password = $_POST["password"];
@@ -40,10 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if a matching record is found
     if ($stmt->fetch()) {
-        // Successful login, set session variable and redirect to homepage
-        $_SESSION["user_name"] = $user_name;
-        header("Location: posthomepage.php");
-        exit();
+        // Successful login, grant access
+        echo "<br>" . "Welcome $selectedTable " . $user_name;
     } else {
         // Invalid credentials, deny access
         echo "<br>" . "Invalid credentials. Please try again.";
@@ -56,6 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Fields not submitted, display an error message
 echo "<br>" . "Please fill in all the required fields.";
 }
-}
+
 
 ?>
