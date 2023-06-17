@@ -1,5 +1,5 @@
 <?php
-function patientlogin(){
+
 require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the submitted ID and password
@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare the query
     $stmt = $conn->prepare("SELECT user_name FROM Patients WHERE user_name = ? AND password = ?");
-    $stmt->bind_Param("is", $user_name,$password);
+    $stmt->bind_Param("ss", $user_name,$password);
     
     // Execute the query
     $stmt->execute();
@@ -27,5 +27,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<br>"."Invalid credentials. Please try again.";
     }
 }
-}
+
 ?>
