@@ -1,44 +1,32 @@
 <?php
 require_once("database.php");
-// Retrieve form data
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve the submitted ID and password
     $user_name = $_POST["user_name"];
     $password = $_POST["password"];
 
-    // Prepare the SQL statement
-    $sql = "SELECT * FROM patients WHERE user_name = ?";
+    // Further validation or sanitization can be applied if necessary
 
-    // Prepare and bind the parameters
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $user_name);
-
-    // Execute the statement
+    // Prepare the query
+    $stmt = $conn->prepare("SELECT user_name FROM Patients WHERE user_name = ? AND password = ?");
+    $stmt->bind_Param("is", $user_name,$password);
+    
+    // Execute the query
     $stmt->execute();
 
-    // Get the result
-    $result = $stmt->get_result();
+    // Bind the result
+    $stmt->bind_result( $user_name);
 
-    if ($result->num_rows == 1) {
-        // Fetch the row
-        $row = $result->fetch_assoc();
-
-        // Verify the password
-        if (isset($row['password']) && password_verify($password, $row['password'])) {
-            // Password is correct, login successful
-            echo "Login successful!";
-        } else {
-            // Invalid password
-            echo "Invalid password!";
-        }
+    // Check if a matching record is found
+    if ($stmt->fetch()) {
+        // Successful login, grant access
+        echo "<br>"."Welcome patient " . $user_name;
     } else {
-        // User does not exist
-        echo "User does not exist!";
+        // Invalid credentials, deny access
+        echo "Invalid credentials. Please try again.";
     }
 
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
-
+    // Close the database connection
+    $conn = null;
 }
 ?>
