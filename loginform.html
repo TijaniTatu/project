@@ -1,32 +1,46 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>LOGIN</title>
-        
-    </head>
-    <body>
-        <form action="login.php" method="POST">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    <div id="section1">
+        <label id="login_statement" for="login_statement">Login as:</label> <br>
+        <select id="firstComboBox" name="firstComboBox" onchange="changer()">
+            <option value="select_option">Select</option>
+            <option value="patient_option">Patient</option>
+            <option value="doctor_option">Doctor</option>
+            <option value="pharmacist_option">Pharmacist</option>
+        </select>
+    </div>
+    <div id="section2" style="display: none;">
+        <br>
+        <label for="field1">Enter Credentials:</label> <br><br>
+        <label for="credentials_id">ID:</label> <br>
+        <input type="text" id="credentials_id"><br>
+        <label for="credentials_password">Password:</label> <br>
+        <input type="password" id="credentials_password"><br>
+    </div>
+    <script>
+        function changer() {
+            const firstComboBox = document.getElementById("firstComboBox");
+            const section2 = document.getElementById("section2");
+            const credentialsId = document.getElementById("credentials_id");
+            const password = document.getElementById("credentials_password");
 
-            <h2>LOGIN</h2>
-
-   
-            
-    <Label>Select profile</Label>
-
-          <br> 
-           <input type="radio" id="actor" name="actor" value="patient" >Patient
-           <br>
-            <input type="radio" id="actor" name="actor" value="doctor">Doctor
-            <br>
-            <input type="radio" id="actor" name="actor" value="pharmaacy">Pharmacy
-            <br>
-            <Label>User_name</Label>
-            <input type="text" name="user_name"placeholder="Username" required>
-
-            <Label>Password</Label>
-            <input type="password" name="password"placeholder="password" required>
-<br>
-            <button type="Submit">Login</button>
-        </form>
-    </body>
+            if (firstComboBox.value !== "select_option") {
+                section2.style.display = 'block';
+                credentialsId.style.display = 'block';
+                password.style.display = 'block';
+            } else {
+                section2.style.display = 'none';
+                credentialsId.style.display = 'none';
+                password.style.display = 'none';
+            }
+        }
+    </script>
+    <button id="Login_button">Login</button>
+</body>
 </html>
