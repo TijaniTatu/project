@@ -27,7 +27,6 @@
         ul.navbar li a:hover {
             background-color: #111;
         }
-<<<<<<< HEAD
 
         /* CSS for the top right corner */
         .top-right {
@@ -38,8 +37,6 @@
             color: white;
             font-weight: bold;
         }
-=======
->>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
     </style>
 </head>
 <body>
@@ -48,16 +45,11 @@
         <li><a href="#">Appointments</a></li>
         <li><a href="#">Medical Records</a></li>
         <li><a href="#">Prescriptions</a></li>
-<<<<<<< HEAD
         <li style="float: centre;"><a href="#">Logout</a></li>
-=======
-        <li style="float: right;"><a href="#">Logout</a></li>
->>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
     </ul>
 
     <h1>Welcome, Patient!</h1>
 
-<<<<<<< HEAD
     <div class="top-right">
         <?php
         session_start();
@@ -69,8 +61,6 @@
         ?>
     </div>
 
-=======
->>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
     <!-- Add your content here -->
 
 </body>

@@ -3,11 +3,7 @@
 <head>
     <title>Doctor Dashboard</title>
     <style>
-<<<<<<< HEAD
         /* CSS for the navigation bar */
-=======
-       
->>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
         ul.navbar {
             list-style-type: none;
             margin: 0;
@@ -31,7 +27,6 @@
         ul.navbar li a:hover {
             background-color: #111;
         }
-<<<<<<< HEAD
 
         /* CSS for the top right corner */
         .top-right {
@@ -42,34 +37,19 @@
             color: white;
             font-weight: bold;
         }
-=======
->>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
     </style>
 </head>
 <body>
     <ul class="navbar">
         <li><a href="#">Home</a></li>
-<<<<<<< HEAD
         <li><a href="#">Appointments</a></li>
         <li><a href="#">Patients</a></li>
         <li><a href="#">Medical Records</a></li>
         <li style="float: centre;"><a href="#">Logout</a></li>
-=======
-        <li>
-            <?php
-            session_start();
-
-            $username = $_SESSION['username'];
-            echo "$username";
-            ?>
-        </li>
-        <li style="float: right;"><a href="#">Logout</a></li>
->>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
     </ul>
 
     <h1>Welcome, Doctor!</h1>
 
-<<<<<<< HEAD
     <div class="top-right">
         <?php
         session_start();
@@ -82,9 +62,6 @@
     </div>
 
     <!-- Add your content here -->
-=======
-   
->>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
 
 </body>
 </html>
