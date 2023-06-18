@@ -1,4 +1,9 @@
 <?php
+<<<<<<< HEAD
+=======
+session_start();
+
+>>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
 require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -43,16 +48,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // Check if a matching record is found
       if ($stmt->fetch()) {
         // Successful login, grant access
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
         // Start a session to store the user's information
         session_start();
 
         // Store the user's name in the session
         $_SESSION["user_name"] = $user_name;
           // Redirect to the appropriate page based on user type
+<<<<<<< HEAD
           echo "<script> alert('Welcome".$tableName.$user_name.".'); </script>";
           header ("Location: $redirectURL");
           //exit(); // Terminate the script after redirect
+=======
+          header("Location: $redirectURL");
+          exit(); // Terminate the script after redirect
+>>>>>>> 681260b8d57902d8503b40ae96ec227ba98a3011
     } else {
         // Invalid credentials, deny access
         echo "<br>" . "Invalid credentials. Please try again.";
