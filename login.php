@@ -1,9 +1,11 @@
 <?php
+session_start();
 
 require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the submitted ID and password
     $user_name = $_POST["user_name"];
+    $_SESSION['username'] = $user_name;
     $password = $_POST["password"];
     $selectedTable= $_POST["firstComboBox"];
     // Further validation or sanitization can be applied if necessary
@@ -12,17 +14,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   switch ($selectedTable) {
     case "patient":
         $tableName = "Patients";
+        $redirectURL = "patient.php"; // Redirect to the patient page
         break;
     case "doctor":
         $tableName = "Doctors";
+        $redirectURL = "doctor.php"; // Redirect to the doctor page
         break;
     case "pharmacy":
         $tableName = "Pharmacy";
+        $redirectURL = "pharmacy.php"; // Redirect to the pharmacy page
         break;
     default:
         $tableName = "";
+        $redirectURL = ""; // Invalid table, no redirect
         break;
-}
+    }
     // Prepare the query
     if (!empty($tableName)) {
         // Prepare the query
@@ -39,7 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if a matching record is found
     if ($stmt->fetch()) {
         // Successful login, grant access
-        echo "<br>" . "Welcome $selectedTable " . $user_name;
+       
+        echo "<script>alert('Welcome " . $selectedTable . " " . $user_name . "');</script>";
+        
+        // Redirect to the appropriate page based on user type
+        header("Location: $redirectURL");
+        exit(); // Terminate the script after redirect
     } else {
         // Invalid credentials, deny access
         echo "<br>" . "Invalid credentials. Please try again.";
