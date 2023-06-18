@@ -27,6 +27,16 @@
         ul.navbar li a:hover {
             background-color: #111;
         }
+
+        /* CSS for the top right corner */
+        .top-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -35,12 +45,23 @@
         <li><a href="#">Medicines</a></li>
         <li><a href="#">Orders</a></li>
         <li><a href="#">Inventory</a></li>
-        <li style="float: right;"><a href="#">Logout</a></li>
+        <li style="float: centre;"><a href="#">Logout</a></li>
     </ul>
 
     <h1>Welcome, Pharmacy!</h1>
 
-    <!-- Add your content here -->
+    <div class="top-right">
+        <?php
+        session_start();
+
+        // Check if the username is set in the session
+        if (isset($_SESSION["user_name"])) {
+            echo "Username: " . $_SESSION["user_name"];
+        }
+        ?>
+    </div>
+
+   `
 
 </body>
 </html>

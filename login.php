@@ -1,6 +1,4 @@
 <?php
-
-
 require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -53,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["user_name"] = $user_name;
           // Redirect to the appropriate page based on user type
           echo "<script> alert('Welcome".$tableName.$user_name.".'); </script>";
-          echo "<script> window.location.href = ".$redirectURL.".</script>";
+          header ("Location: $redirectURL");
           //exit(); // Terminate the script after redirect
     } else {
         // Invalid credentials, deny access
