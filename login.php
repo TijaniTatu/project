@@ -5,7 +5,6 @@ require_once("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve the submitted ID and password
     $user_name = $_POST["user_name"];
-    $_SESSION['username'] = $user_name;
     $password = $_POST["password"];
     $selectedTable= $_POST["firstComboBox"];
     // Further validation or sanitization can be applied if necessary
@@ -42,15 +41,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Bind the result
     $stmt->bind_result( $user_name);
 
-    // Check if a matching record is found
-    if ($stmt->fetch()) {
+      // Check if a matching record is found
+      if ($stmt->fetch()) {
         // Successful login, grant access
-       
-        echo "<script>alert('Welcome " . $selectedTable . " " . $user_name . "');</script>";
-        
-        // Redirect to the appropriate page based on user type
-        header("Location: $redirectURL");
-        exit(); // Terminate the script after redirect
+
+        // Start a session to store the user's information
+        session_start();
+
+        // Store the user's name in the session
+        $_SESSION["user_name"] = $user_name;
+          // Redirect to the appropriate page based on user type
+          header("Location: $redirectURL");
+          exit(); // Terminate the script after redirect
     } else {
         // Invalid credentials, deny access
         echo "<br>" . "Invalid credentials. Please try again.";
