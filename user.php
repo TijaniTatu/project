@@ -25,7 +25,7 @@
   <tbody>
 
     <?php 
-   
+    $sql="Select * from Patients'"
     
     ?>
     <!--tr>

@@ -73,9 +73,8 @@
               echo '
               <h2>Edit User Details</h2>
               <form method="post" action="update_user.php">
-                  <!-- Add your form fields here -->
-                  <!-- For example:
-                  <label for="name">Name:</label>
+                  
+                  <label for="User_name">User_name:</label>
                   <input type="text" id="name" name="name" value="">
       
                   <label for="email">Email:</label>
@@ -90,28 +89,31 @@
           } else {
               // Display user details
               // Add your code here for displaying user details
-              $patients = selectDataFromDatabase("localhost", "root", "", "db_tijani_tatu_150397", "Patients");
-      
-                if (!empty($patients)) {
-                    echo '<table>';
-                    echo '<tr><th>Name</th><th>Email</th><th>Age</th><th>Action</th></tr>';
+               // Get the logged-in user's details from the database
+        $username = $_SESSION["user_name"];
+        $user = selectDataFromDatabase("localhost", "root", "", "db_tijani_tatu_150397", "Patients", "user_name", $username);
 
-                    foreach ($patients as $patient) {
-                        if (isset($patient['user_name']) && isset($patient['first_name']) && isset($patient['second_name']) && isset($patient['age']) && isset($patient['address']) && isset($patient['email_address']) && isset($patient['phone_number']) && isset($patient['password'])) {
-                        echo '<tr>';
-                        echo '<td>' . $patient['user_name'] . '</td>';
-                        echo '<td>' . $patient['first_name'] . '</td>';
-                        echo '<td>' . $patient['second_name'] . '</td>';
-                        echo '<td>' . $patient['age'] . '</td>';
-                        echo '<td>' . $patient['address'] . '</td>';
-                        echo '<td>' . $patient['email_address'] . '</td>';
-                        echo '<td>' . $patient['phone_number'] . '</td>';
-                        echo '<td>' . $patient['password'] . '</td>';
-                        echo '<td><span class="edit-icon" onclick="editPatient(' . $patient['id'] . ')"></span></td>';
-                        echo '</tr>';
-                    }
-                }
-                    echo '</table>';
+        if (!empty($user)) {
+            echo '<table>';
+            echo '<tr><th>user_name</th><th>first_name</th><th>second_name</th><th>age</th><th>address</th><th>email_address</th><th>phone_number</th><th>password</th><th>Action</th></tr>';
+
+            echo '<tr>';
+            echo '<td>' . $user[0]['USER_NAME'] . '</td>';
+            echo '<td>' . $user[0]['FIRST_NAME'] . '</td>';
+            echo '<td>' . $user[0]['SECOND_NAME'] . '</td>';
+            echo '<td>' . $user[0]['AGE'] . '</td>';
+            echo '<td>' . $user[0]['ADDRESS'] . '</td>';
+            echo '<td>' . $user[0]['EMAIL_ADDRESS'] . '</td>';
+            echo '<td>' . $user[0]['PHONE_NUMBER'] . '</td>';
+            echo '<td>' . $user[0]['PASSWORD'] . '</td>';
+            echo '<td><button class="btn btn-primary"><a href="update.php"
+            class=text-light">update</a></td>';
+            echo '<td><button class="btn btn-danger"><a href="#"
+            class=text-light">delete</a></td>';
+            echo '</tr>';
+               
+
+            echo '</table>';
                 } else {
                     echo 'No patients found.';
                 }
@@ -123,12 +125,6 @@
         }
         ?>
 
-        <!-- JavaScript function to handle edit operation -->
-        <script>
-            function editPatient(patientId) {
-                // Redirect to the user_management.php page with the edit parameter
-                window.location.href = 'user_management.php?edit=' + patientId;
-            }
         </script>
     </div>
 </body>

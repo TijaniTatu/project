@@ -1,39 +1,40 @@
 <?php
 
-    function selectDataFromDatabase($servername, $username, $password, $database, $tableName)
-    {
-        require_once("database.php");
-    
-        // SQL query to select data
-        $sql = "SELECT * FROM  Patients";
-    
-        // Execute the query   
-        $result = $conn->query($sql);
-    
-        // Check if any rows are returned
-        if ($result->num_rows > 0) {
-            // Create an array to hold the data
-            $data = array();
-    
-            // Loop through each row
-            while ($row = $result->fetch_assoc()) {
-                // Add the row to the data array
-                $data[] = $row;
-            }
-    
-            // Close the connection
-            $conn->close();
-    
-            // Return the retrieved data
-            return $data;
-        } else {
-            // Close the connection
-            $conn->close();
-    
-            // Return an empty array if no data found
-            return array();
+function selectDataFromDatabase($servername, $username, $password, $database, $tableName, $columnName, $columnValue)
+{
+    require_once("database.php");
+
+    // SQL query to select data for the specific user
+    $sql = "SELECT * FROM $tableName WHERE $columnName = '$columnValue'";
+$conn=new mysqli("localhost","root","","db_tijani_tatu_150397");
+    // Execute the query   
+    $result = $conn->query($sql);
+
+    // Check if any rows are returned
+    if ($result->num_rows > 0) {
+        // Create an array to hold the data
+        $data = array();
+
+        // Loop through each row
+        while ($row = $result->fetch_assoc()) {
+            // Add the row to the data array
+            $data[] = $row;
         }
+
+        // Close the connection
+        $conn->close();
+
+        // Return the retrieved data
+        return $data;
+    } else {
+        // Close the connection
+        $conn->close();
+
+        // Return an empty array if no data found
+        return array();
     }
+}
+
     
     function deleteDataFromDatabase($servername, $username, $password, $database, $tableName, $user_name)
     {
@@ -52,29 +53,37 @@
         return $result === TRUE;
     }
     
-    function updateDataInDatabase($servername, $username, $password, $database, $tableName, $user_name, $newData)
+    
+    function updateUserData($host, $username, $password, $database)
     {
-        require_once("database.php");
+        // Create a new MySQLi object and establish the database connection
+        $conn = new mysqli($host, $username, $password, $database);
     
-        // Generate the SET clause for updating the user data
-        $setClause = '';
-        foreach ($newData as $column => $value) {
-            $setClause .= "$column = '$value',";
+        // Check if the connection was successful
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
         }
-        $setClause = rtrim($setClause, ',');
     
-        // SQL query to update a user with a specific ID
-        $sql = "UPDATE $tableName SET $setClause WHERE id = $user_name";
+        // Prepare the update statement
+        $stmt = $conn->prepare("UPDATE Patients SET USER_NAME=?, EMAIL_ADDRESS=?, AGE=? WHERE USER_NAME=?");
     
-        // Execute the query
-        $result = $conn->query($sql);
+        // Bind the parameters to the prepared statement
+        $stmt->bind_param("ssis", $newUsername, $email, $age, $oldUsername);
     
-        // Close the connection
+        // Execute the prepared statement
+        $stmt->execute();
+    
+        // Check if the update was successful
+        $updateResult = ($stmt->affected_rows > 0);
+    
+        // Close the statement and database connection
+        $stmt->close();
         $conn->close();
     
-        // Return true if the update was successful, or false otherwise
-        return $result === TRUE;
+        // Return the result of the update operation
+        return $updateResult;
     }
+    ?>
     
   
     

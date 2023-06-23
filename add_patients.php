@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare and bind the parameters
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sissis', $user_name, $age, $address,$email_address,$phone_number,$password);
+    $stmt->bind_param('sssissss', $user_name,$first_name,$second_name ,$age, $address,$email_address,$phone_number,$password);
 
     // Execute the statement
     if ($stmt->execute()) {
