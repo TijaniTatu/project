@@ -45,6 +45,7 @@
         <li><a href="#">Appointments</a></li>
         <li><a href="#">Medical Records</a></li>
         <li><a href="#">Prescriptions</a></li>
+        <li><a href="user_management.php">user management</a></li>
         <li style="float: centre;"><a href="#">Logout</a></li>
     </ul>
 
@@ -52,12 +53,18 @@
 
     <div class="top-right">
         <?php
-        session_start();
+    // Check if the user is logged in and their username is set in the session
+    session_start();
+    if (isset($_SESSION["user_name"])) {
+        echo "Welcome, " . $_SESSION["user_name"] . "!";
 
-        // Check if the username is set in the session
-        if (isset($_SESSION["user_name"])) {
-            echo "Username: " . $_SESSION["user_name"];
-        }
+        // Display user details or form for updating details
+        // Add your code here for displaying user details or the update form
+    } else {
+        // Redirect to the login page if the user is not logged in
+        header("Location: login.php");
+        exit();
+    }
         ?>
     </div>
 
