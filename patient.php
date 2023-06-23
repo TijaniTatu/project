@@ -46,7 +46,7 @@
         <li><a href="#">Medical Records</a></li>
         <li><a href="#">Prescriptions</a></li>
         <li><a href="user_management.php">user management</a></li>
-        <li style="float: centre;"><a href="#">Logout</a></li>
+        <li style="float: center;"><a href="#">Logout</a></li>
     </ul>
 
     <h1>Welcome, Patient!</h1>

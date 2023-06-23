@@ -7,6 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
    
     $user_name = $_POST["user_name"];
+    $first_name =$_POST["first_name"];
+    $second_name =$_POST["second_name"];
     $age = $_POST["age"];
     $address = $_POST["address"];
     $email_address = $_POST["email_address"];
