@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare the SQL statement
     
-    $sql = "INSERT INTO Patients (user_name, age, address,email_address,phone_number,password) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO Patients (USER_NAME,FIRST_NAME,SECOND_NAME, AGE, ADDRESS,EMAIL_ADDRESS,PHONE_NUMBER,PASSWORD) VALUES (?, ?, ?, ?, ?, ? ,? ,? )";
 
 
     // Prepare and bind the parameters

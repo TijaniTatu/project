@@ -35,7 +35,7 @@ $conn=new mysqli("localhost","root","","db_tijani_tatu_150397");
     }
 }
 
-function deleteDataFromDatabase($servername, $username, $password, $database, $tableName, $user_id)
+function deleteDataFromDatabase($servername, $username, $password, $database, $tableName, $user_name)
 {
    
 
