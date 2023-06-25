@@ -35,23 +35,45 @@ $conn=new mysqli("localhost","root","","db_tijani_tatu_150397");
     }
 }
 
-    
-    function deleteDataFromDatabase($servername, $username, $password, $database, $tableName, $user_name)
-    {
-        require_once("database.php");
-    
-        // SQL query to delete a user with a specific ID
-        $sql = "DELETE FROM $tableName WHERE id = $user_name";
-    
-        // Execute the query
-        $result = $conn->query($sql);
-    
-        // Close the connection
-        $conn->close();
-    
-        // Return true if the deletion was successful, or false otherwise
-        return $result === TRUE;
+function deleteDataFromDatabase($servername, $username, $password, $database, $tableName, $user_id)
+{
+   
+
+require_once("login.php");
+   
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+    // Prepare the SQL statement with a parameterized query
+    $sql = "DELETE FROM $tableName WHERE USER_NAME = ?";
+    $stmt = $conn->prepare($sql);
+
+    // Bind the user ID as a parameter
+    $stmt->bind_param("s", $user_name);
+
+    // Execute the query
+    $result = $stmt->execute();
+
+    // Check if the deletion was successful
+    if ($result === TRUE) {
+        // Deletion successful
+        $deleted = true;
+    } else {
+        // Deletion failed
+        $deleted = false;
     }
+
+    // Close the statement and the connection
+    $stmt->close();
+    $conn->close();
+
+    // Return true if the deletion was successful, or false otherwise
+    return $deleted;
+}
+
     
     
     function updateUserData($host, $username, $password, $database)
@@ -84,11 +106,7 @@ $conn=new mysqli("localhost","root","","db_tijani_tatu_150397");
         return $updateResult;
     }
     ?>
-    
-  
-    
-    ?>
-    
+
     
     
 
