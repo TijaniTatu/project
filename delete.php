@@ -1,26 +1,38 @@
-<?php
-require_once("functions.php");
-require_once("database.php");
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete User Details</title>
+</head>
+<body>
 
-// Check if the user is logged in and their username is set in the session
-session_start();
-if (isset($_SESSION["user_name"])) {
-    // Check if the delete ID is provided in the URL
-    if (isset($_GET["deleteid"])) {
-        $deleteID = $_GET["deleteid"];
 
-        // Delete the user from the database
-        if (deleteDataFromDatabase("localhost", "root", "", "db_tijani_tatu_150397", "Patients", $deleteID)) {
-            echo "User deleted successfully.";
-        } else {
-            echo "Failed to delete user.";
-        }
+  <h1>CONFIRM TO DELETE</h1>
+  <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+    <label for="user_id">User_name</label>
+    <input type="text" name="user_id" required><br>
+
+    <input type="submit" name="submit" value="Delete">
+      <?php
+  require("database.php");
+  // Check if the form is submitted
+  if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Retrieve form dat
+    $userId = $_POST['user_id'];
+
+   
+    // Prepare and execute the delete query
+    $stmt = $conn->prepare("DELETE FROM Patients WHERE USER_NAME=?");
+    $stmt->bind_param("s", $userId);
+    if ($stmt->execute()) {
+      echo "User details deleted successfully.";
     } else {
-        echo "Delete ID not provided.";
+      echo "Error deleting user details: " . $stmt->error;
     }
-} else {
-    // Redirect to the login page if the user is not logged in
-    header("Location: login.php");
-    exit();
-}
-?>
+
+    $stmt->close();
+    $conn->close();
+  }
+  ?>
+  </form>
+</body>
+</html>

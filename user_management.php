@@ -106,10 +106,10 @@
             echo '<td>' . $user[0]['EMAIL_ADDRESS'] . '</td>';
             echo '<td>' . $user[0]['PHONE_NUMBER'] . '</td>';
             echo '<td>' . $user[0]['PASSWORD'] . '</td>';
-            echo '<td><button class="btn btn-primary"><a href="update.php?edit=1" class="text-light">Update</a></button></td>';
-            echo '<td><button class="btn btn-danger"><a href="delete.php?deleteid=' . $user[0]. '" class="text-light">Delete</a></button></td>';
+            echo '<td><button class="btn btn-primary"><a href="update.php?updateid=1" class="text-light">Update</a></button></td>';
+            echo '<td><button class="btn btn-danger"><a href="delete.php?deleteid=1"  class="text-light">Delete</a></button></td>';
             echo '</tr>';
-               
+        
 
             echo '</table>';
                 } else {
@@ -120,11 +120,12 @@
             // Redirect to the login page if the user is not logged in
             header("Location: login.php");
             exit();
+                
         }
         ?>
 
         </script>
+        
     </div>
 </body>
 </html>
-
