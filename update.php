@@ -16,21 +16,14 @@
                <br>
                <br>       
                 <div>
-                    <label for="first_name">first_name:</label>
-                    <input type="text" id="first_name" 
-                    name="first_name" placeholder="first_name" required
+                    <label for="NAME">NAME:</label>
+                    <input type="text" id="NAME" 
+                    name="NAME" placeholder="NAME" required
                     autocomplete="off">
                 </div>
                <br>
                <br>       
-                <div>
-                    <label for="second_name">second_name:</label>
-                    <input type="text" id="second_name" 
-                    name="second_name" 
-                    placeholder="second_name" required
-                    autocomplete="off">
-                </div>
-               <br>
+                
                 <div>
                     <label for="age">age:</label>
                     <input type="number" id="age" 
@@ -79,8 +72,8 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve the updated user details from the form submission
     $user_name = $_POST["user_name"];
-    $first_name = $_POST["first_name"];
-    $second_name = $_POST["second_name"];
+    $NAME = $_POST["NAME"];
+  
     $age = $_POST["age"];
     $address = $_POST["address"];
     $email_address = $_POST["email_address"];
@@ -93,8 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    
 
     // Prepare and execute the update query
-    $stmt = $conn->prepare("UPDATE patients SET FIRST_NAME=?, SECOND_NAME=?, AGE=?, ADDRESS=?, EMAIL_ADDRESS=?, PHONE_NUMBER=?, PASSWORD=? WHERE USER_NAME=? ");
-    $stmt->bind_param("ssisssss", $first_name, $second_name, $age, $address, $email_address, $phone_number, $password, $user_name);
+    $stmt = $conn->prepare("UPDATE patients SET NAME=?, AGE=?, ADDRESS=?, EMAIL_ADDRESS=?, PHONE_NUMBER=?, PASSWORD=? WHERE USER_NAME=? ");
+    $stmt->bind_param("ssisssss", $NAME, $age, $address, $email_address, $phone_number, $password, $user_name);
 
     if ($stmt->execute()) {
        

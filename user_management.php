@@ -95,12 +95,11 @@
 
         if (!empty($user)) {
             echo '<table>';
-            echo '<tr><th>user_name</th><th>first_name</th><th>second_name</th><th>age</th><th>address</th><th>email_address</th><th>phone_number</th><th>password</th><th>Action</th></tr>';
+            echo '<tr><th>user_name</th><th>NAME</th>><th>age</th><th>address</th><th>email_address</th><th>phone_number</th><th>password</th><th>Action</th></tr>';
 
             echo '<tr>';
             echo '<td>' . $user[0]['USER_NAME'] . '</td>';
-            echo '<td>' . $user[0]['FIRST_NAME'] . '</td>';
-            echo '<td>' . $user[0]['SECOND_NAME'] . '</td>';
+            echo '<td>' . $user[0]['NAME'] . '</td>';
             echo '<td>' . $user[0]['AGE'] . '</td>';
             echo '<td>' . $user[0]['ADDRESS'] . '</td>';
             echo '<td>' . $user[0]['EMAIL_ADDRESS'] . '</td>';

@@ -13,8 +13,7 @@
   <thead>
     <tr>
       <th scope="col">user_name</th>
-      <th scope="col">first_name</th>
-      <th scope="col">second_name</th>
+      <th scope="col">NAME</th>
       <th scope="col">address</th>
       <th scope="col">email_address</th>
       <th scope="col">phone_number</th>

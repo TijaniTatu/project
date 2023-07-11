@@ -76,8 +76,8 @@ require_once("database.php");
 
     // Fetch patients from the database
     $sql = "SELECT * FROM patients";
-    $result = $conn->query($sql);
-
+    
+$result = $conn->query($sql);
     // Check if any patients were found
     if ($result) {
         if ($result->num_rows > 0) {
@@ -98,8 +98,7 @@ require_once("database.php");
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row["USER_NAME"] . "</td>";
-                echo "<td>" . $row["FIRST_NAME"] . "</td>";
-                echo "<td>" . $row["SECOND_NAME"] . "</td>";
+                echo "<td>" . $row["NAME"] . "</td>";
                 echo "<td>" . $row["AGE"] . "</td>";
                 echo "<td>" . $row["ADDRESS"] . "</td>";
                 echo "<td>" . $row["EMAIL_ADDRESS"] . "</td>";
@@ -138,8 +137,7 @@ require_once("database.php");
                 echo "<table>
                         <tr>
                             <th>User Name</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th>Name</th>
                             <th>speciality</th>
                             <th>years of experience</th>
                             <th>Action</th>
@@ -149,8 +147,7 @@ require_once("database.php");
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["USER_NAME"] . "</td>";
-                    echo "<td>" . $row["FIRST_NAME"] . "</td>";
-                    echo "<td>" . $row["LAST_NAME"] . "</td>";
+                    echo "<td>" . $row["NAME"] . "</td>";
                     echo "<td>" . $row["SPECIALITY"] . "</td>";
                     echo "<td>" . $row["YRS_OF_EXPERIENCE"] . "</td>";
                     echo '<td><button class="btn btn-primary"><a href="update.php?updateid=1" class="text-light">Update</a></button></td>';
