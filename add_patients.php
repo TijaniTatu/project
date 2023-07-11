@@ -7,8 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
    
     $user_name = $_POST["user_name"];
-    $first_name =$_POST["first_name"];
-    $second_name =$_POST["second_name"];
+    $NAME =$_POST["NAME"];
     $age = $_POST["age"];
     $address = $_POST["address"];
     $email_address = $_POST["email_address"];
@@ -18,12 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Prepare the SQL statement
     
-    $sql = "INSERT INTO Patients (USER_NAME,FIRST_NAME,SECOND_NAME, AGE, ADDRESS,EMAIL_ADDRESS,PHONE_NUMBER,PASSWORD) VALUES (?, ?, ?, ?, ?, ? ,? ,? )";
+    $sql = "INSERT INTO Patients (USER_NAME,NAME, AGE, ADDRESS,EMAIL_ADDRESS,PHONE_NUMBER,PASSWORD) VALUES (?, ?, ?, ?, ? ,? ,? )";
 
 
     // Prepare and bind the parameters
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('sssissss', $user_name,$first_name,$second_name ,$age, $address,$email_address,$phone_number,$password);
+    $stmt->bind_param('ssissss', $user_name,$NAME ,$age, $address,$email_address,$phone_number,$password);
 
     // Execute the statement
     if ($stmt->execute()) {
