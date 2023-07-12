@@ -66,8 +66,7 @@
       if (isset($_SESSION["user_name"])) {
           echo "Welcome, " . $_SESSION["user_name"] . "!";
       
-          // Display user details or form for updating details
-          // Add your code here for displaying user details or the update form
+          
           if (isset($_GET['edit'])) {
               // Display the update form
               echo '
