@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Prepare the query
     if (!empty($tableName)) {
         // Prepare the query
-        $stmt = $conn->prepare("SELECT USERNAME FROM $tableName WHERE user_name = ? AND password = ?");
+        $stmt = $conn->prepare("SELECT USER_NAME FROM $tableName WHERE user_name = ? AND password = ?");
         $stmt->bind_param("ss", $user_name, $password);
     
         // Execute the query

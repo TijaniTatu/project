@@ -43,7 +43,6 @@
     <ul class="navbar">
         <li><a href="#">Home</a></li>
         <li><a href="appointments.php">Appointments</a></li>
-        <li><a href="#">Medical Records</a></li>
         <li><a href="#">Prescriptions</a></li>
         <li><a href="user_management.php">user management</a></li>
         <li style="float: center;"><a href="#">Logout</a></li>

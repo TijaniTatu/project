@@ -140,6 +140,7 @@ $result = $conn->query($sql);
                             <th>Name</th>
                             <th>speciality</th>
                             <th>years of experience</th>
+                            <th>email_address</th>
                             <th>Action</th>
                         </tr>";
     
@@ -150,6 +151,7 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["NAME"] . "</td>";
                     echo "<td>" . $row["SPECIALITY"] . "</td>";
                     echo "<td>" . $row["YRS_OF_EXPERIENCE"] . "</td>";
+                    echo "<td>" . $row["EMAIL_ADDRESS"] . "</td>";
                     echo '<td><button class="btn btn-primary"><a href="update.php?updateid=1" class="text-light">Update</a></button></td>';
                     echo '<td><button class="btn btn-danger"><a href="delete.php?deleteid=1"  class="text-light">Delete</a></button></td>';
                     echo "</tr>";
