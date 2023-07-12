@@ -4,7 +4,7 @@
 
 
 // Make sure the doctor ID is provided
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['doctor_id'])) {
+// if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['doctor_id'])) {
     // Retrieve the doctor ID from the URL parameter
     $doctorId = $_GET['doctor_id'];
 
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['doctor_id'])) {
             // Display a success message
             echo "<h3>Appointment Request Sent</h3>";
             echo "<p>Thank you, $patientName! Your appointment request with doctor $doctorId for $appointmentDate at $appointmentTime has been sent. We will get back to you shortly.</p>";
-            echo "<p><a href='search_doctors.php'>Go back to search</a></p>";
+            echo "<p><a href='appointments.php'>Go back to appointments</a></p>";
         } else {
             // Display an error message
             echo "<h3>Error</h3>";
@@ -55,9 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['doctor_id'])) {
     }
 
    
-} else {
-    // Redirect to the search_doctors.php page if the doctor ID is not provided
-    header("Location: search_doctors.php");
-    exit();
-}
+// }
+//  else {
+//     // Redirect to the search_doctors.php page if the doctor ID is not provided
+//     // header("Location: search_doctors.php");
+//     echo "<script>alert('Error');</script>";
+//     exit();
+// }
 ?>
