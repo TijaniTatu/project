@@ -11,7 +11,7 @@
      // Display the appointment request form
  echo "<h3>Request Appointment</h3>";
  echo "<form method='POST' action='appointment_request.php?doctor_id=$doctorId'>";
- echo "<label for='patient_name'>Your Name:</label>";
+ echo "<label for='patient_name'>Your User_name:</label>";
  echo "<input type='text' id='patient_name' name='patient_name' required><br>";
  echo "<label for='patient_email'>Your Email:</label>";
  echo "<input type='email' id='patient_email' name='patient_email' required><br>";
