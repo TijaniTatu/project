@@ -42,7 +42,7 @@
 <body>
     <ul class="navbar">
         <li><a href="#">Home</a></li>
-        <li><a href="#">Appointments</a></li>
+        <li><a href="doctors_appointments.php">Appointments</a></li>
         <li><a href="#">Patients</a></li>
         <li><a href="#">Medical Records</a></li>
         <li style="float: right;"><a href="#">Logout</a></li>
@@ -60,50 +60,6 @@
         }
         ?>
     </div>
-
-    <h2>Appointments</h2>
-
-    <?php
-    // Retrieve and display the appointments for the doctor
-    require_once("database.php");
-
-    // Retrieve the doctor's ID from the session or a query parameter
-    $doctorId = $_SESSION["doctor_id"] ?? $_GET["doctor_id"] ?? null;
-
-    if ($doctorId) {
-        // Prepare and execute the SQL query to fetch the appointments
-        $stmt = $conn->prepare("SELECT * FROM appointments WHERE doctor_id = ?");
-        $stmt->bind_param("s", $doctorId);
-        $stmt->execute();
-
-        // Get the result set
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            echo "<table>";
-            echo "<tr><th>Patient Name</th><th>Date</th><th>Time</th></tr>";
-
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["PATIENT_NAME"] . "</td>";
-                echo "<td>" . $row["DATE"] . "</td>";
-                echo "<td>" . $row["TIME"] . "</td>";
-                echo "</tr>";
-            }
-
-            echo "</table>";
-        } else {
-            echo "<p>No appointments found.</p>";
-        }
-
-        // Close the statement and the database connection
-        $stmt->close();
-        $conn->close();
-    } else {
-        echo "<p>Doctor ID not found.</p>";
-    }
-    
-    ?>
     
 
 </body>

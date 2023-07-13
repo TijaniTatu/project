@@ -11,10 +11,8 @@
      // Display the appointment request form
  echo "<h3>Request Appointment</h3>";
  echo "<form method='POST' action='appointment_request.php?doctor_id=$doctorId'>";
- echo "<label for='patient_name'>Your User_name:</label>";
- echo "<input type='text' id='patient_name' name='patient_name' required><br>";
- echo "<label for='patient_email'>Your Email:</label>";
- echo "<input type='email' id='patient_email' name='patient_email' required><br>";
+ echo "<label for='patient_user_name'>Your User_name:</label>";
+ echo "<input type='text' id='patient_user_name' name='patient_user_name' required><br>";
  echo "<label for='appointment_date'>Preferred Date:</label>";
  echo "<input type='date' id='appointment_date' name='appointment_date' required><br>";
  echo "<label for='appointment_time'>Preferred Time:</label>";
@@ -23,8 +21,7 @@
     // Retrieve the patient's details and appointment information from the form data
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Retrieve and sanitize the patient's details and appointment information
-        $patientName = $_POST['patient_name'];
-        $patientEmail = $_POST['patient_email'];
+        $patientName = $_POST['patient_user_name'];
         $appointmentDate = $_POST['appointment_date'];
         $appointmentTime = $_POST['appointment_time'];
 
@@ -32,8 +29,8 @@
         require_once("database.php");
 
         // Prepare the SQL statement
-        $stmt = $conn->prepare("INSERT INTO appointments (DOCTOR_ID, PATIENT_NAME, PATIENT_EMAIL, DATE, TIME) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $doctorId, $patientName, $patientEmail, $appointmentDate, $appointmentTime);
+        $stmt = $conn->prepare("INSERT INTO appointments (PATIENT_USERNAME, DOCTORS_USERNAME, DATE, TIME) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss",  $patientName, $doctorId, $appointmentDate, $appointmentTime);
 
         // Execute the statement
         if ($stmt->execute()) {
