@@ -8,7 +8,7 @@ if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] && $_SESSION["user_n
     $adminUserName = $_SESSION["user_name"];
     // You can retrieve additional information from the database if needed
 }
-require_once("database.php");
+require_once("connection.php");
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +86,8 @@ require_once("database.php");
         echo "<table>
                 <tr>
                     <th>User Name</th>
-                    <th>Name</th>
+                    <th>First Name</th>
+                 
                     <th>Age</th>
                     <th>Address</th>
                     <th>Email Address</th>
@@ -104,7 +105,7 @@ require_once("database.php");
             echo "<td>" . $row["EMAIL_ADDRESS"] . "</td>";
             echo "<td>" . $row["PHONE_NUMBER"] . "</td>";
             echo '<td><button class="btn btn-primary"><a href="update_patient.php?updateid=1" class="text-light">Update</a></button></td>';
-            echo '<td><button class="btn btn-danger"><a href="delete_patient.php?deleteid=1"  class="text-light">Delete</a></button></td>';
+            echo '<td><button class="btn btn-danger"><a href="deletepatients_admin.php?deleteid=1"  class="text-light">Delete</a></button></td>';
             echo "</tr>";
         }
 
@@ -149,7 +150,7 @@ require_once("database.php");
             echo "<td>" . $row["SPECIALITY"] . "</td>";
             echo "<td>" . $row["YRS_OF_EXPERIENCE"] . "</td>";
             echo '<td><button class="btn btn-primary"><a href="update_doctors.php?updateid=1" class="text-light">Update</a></button></td>';
-            echo '<td><button class="btn btn-danger"><a href="delete_doctors.php?deleteid=1"  class="text-light">Delete</a></button></td>';
+            echo '<td><button class="btn btn-danger"><a href="deletedoctors_admin.php?deleteid=1"  class="text-light">Delete</a></button></td>';
             echo "</tr>";
         }
 
@@ -165,7 +166,48 @@ require_once("database.php");
     </div>
     
     <div id="viewPharmacies" class="tab-content">
-        <!-- Code to display the "View Pharmacies" content from the database -->
+    <?php
+    
+
+    // Fetch patients from the database
+    $sql = "SELECT * FROM pharmacists_login";
+    $result = $conn->query($sql);
+
+    // Check if any patients were found
+    if ($result && $result->num_rows > 0) {
+        // Output the patient data as a table
+        echo "<table>
+                <tr>
+                    <th>User Name</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Password</th>
+                
+                </tr>";
+
+        // Output each patient row as a table row
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["USER_NAME"] . "</td>";
+            echo "<td>" . $row["NAME"] . "</td>";
+            echo "<td>" . $row["ADDRESS"] . "</td>";
+            echo "<td>" . $row["PHONE_NUMBER"] . "</td>";
+            echo "<td>" . $row["PASSWORD"] . "</td>";
+            echo '<td><button class="btn btn-primary"><a href="update_pharmacists.php?updateid=1" class="text-light">Update</a></button></td>';
+            echo '<td><button class="btn btn-danger"><a href="deletepharmacist_admin.php?deleteid=1"  class="text-light">Delete</a></button></td>';
+            echo "</tr>";
+        }
+
+        echo "</table>";
+    } else {
+        echo "No patients found.";
+    }
+
+    
+    echo '<td><button class="btn btn-danger"><a href="addpharmacist_admin.php" class="text-light">Add Pharmacist</a></button></td>';
+
+    ?>
     </div>
     
     <div id="viewPharmaceuticalCompanies" class="tab-content">
