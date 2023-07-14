@@ -45,7 +45,7 @@
         <li><a href="appointments.php">Appointments</a></li>
         <li><a href="patient_prescription.php">Prescriptions</a></li>
         <li><a href="user_management.php">user management</a></li>
-        <li style="float: center;"><a href="#">Logout</a></li>
+        <li style="float: center;"><a href="#" onclick="Logout()">Logout</a></li>
     </ul>
 
     <h1>Welcome, Patient!</h1>
@@ -66,6 +66,15 @@
     }
         ?>
     </div>
+    <script>
+    function Logout() {
+        // Display confirmation alert
+        if (confirm("Are you sure you want to end the session?")) {
+            // Destroy the session
+            window.location.href = "loginform.html";
+        }
+    }
+</script>
 
     <!-- Add your content here -->
 
