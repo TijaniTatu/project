@@ -135,7 +135,7 @@ require_once("connection.php");
         echo "<table>
                 <tr>
                     <th>User Name</th>
-                    <th>First Name</th>
+                    <th>Name</th>
                     <th>Speciality</th>
                     <th>Years of experience</th>
                 

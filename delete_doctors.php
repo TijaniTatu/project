@@ -6,7 +6,7 @@
 <body>
 
 
-  <h1>LDELETE USER?</h1>
+  <h1>LEAVING SO SOON?</h1>
   <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
     <label for="user_id">Username</label>
     <input type="text" name="user_id" required><br>
