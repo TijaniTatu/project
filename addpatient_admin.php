@@ -1,5 +1,5 @@
 <?php
-require("connection.php");
+require("database.php");
         echo "
         <form method='POST' action=''>
             <label for='username'>User Name:</label>

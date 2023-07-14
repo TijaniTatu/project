@@ -6,7 +6,7 @@
 <body>
 
 
-  <h1>LEAVING SO SOON?</h1>
+  <h1>DELETE USER?</h1>
   <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
     <label for="user_id">Username</label>
     <input type="text" name="user_id" required><br>
@@ -14,7 +14,7 @@
 
     <input type="submit" name="submit" value="Delete">
       <?php
-  require("connection.php");
+  require("database.php");
   // Check if the form is submitted
   if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve form dat
