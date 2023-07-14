@@ -7,7 +7,9 @@
 <h1>Write Prescription</h1>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <input type="hidden" name="patientUsername" value="<?php echo $patientUsername; ?>">
+    <label for="patientUsername">Patient Username:</label>
+    <input type="text" name="patientUsername" id="patientUsername">
+    <br>
     <label for="drugId">Drug ID:</label>
     <select name="drugId" id="drugId">
         <?php
@@ -26,8 +28,6 @@
             }
             $result->free();
         }
-            
-        
 
         echo $combo;
         ?>
@@ -57,23 +57,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $dosage = isset($_POST["dosage"]) ? $_POST["dosage"] : "";
     $instruction = isset($_POST["instruction"]) ? $_POST["instruction"] : "";
 
-    // Check if the drug ID exists in the drugs table
-    $drugQuery = "SELECT * FROM drugs WHERE DRUG_ID = '$drugId'";
-    $drugResult = mysqli_query($conn, $drugQuery);
+    // Check if the patient username exists in the patients table
+    $patientQuery = "SELECT * FROM patients WHERE USER_NAME = '$patientUsername'";
+    $patientResult = mysqli_query($conn, $patientQuery);
 
-    if (mysqli_num_rows($drugResult) > 0) {
-        // Perform the prescription insertion query
-        $insertQuery = "INSERT INTO prescription (PATIENT_USERNAME, DOCTOR_USERNAME, DRUG_ID, PRESCRIPTION_DATE, DOSAGE, INSTRUCTION) 
-        VALUES ('$patientUsername', '$doctorUsername', '$drugId', '$prescriptionDate', '$dosage', '$instruction')";
-        $insertResult = mysqli_query($conn, $insertQuery);
+    if (mysqli_num_rows($patientResult) === 1) {
+        // Check if the drug ID exists in the drugs table
+        $drugQuery = "SELECT * FROM drugs WHERE DRUG_ID = '$drugId'";
+        $drugResult = mysqli_query($conn, $drugQuery);
 
-        if ($insertResult) {
-            echo "<p>Prescription written successfully!</p>";
+        if (mysqli_num_rows($drugResult) === 1) {
+            // Perform the prescription insertion query
+            $insertQuery = "INSERT INTO prescription (PATIENT_USERNAME, DOCTOR_USERNAME, DRUG_ID, PRESCRIPTION_DATE, DOSAGE, INSTRUCTION) 
+            VALUES ('$patientUsername', '$doctorUsername', '$drugId', '$prescriptionDate', '$dosage', '$instruction')";
+            $insertResult = mysqli_query($conn, $insertQuery);
+
+            if ($insertResult) {
+                echo "<p>Prescription written successfully!</p>";
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
         } else {
-            echo "Error: " . mysqli_error($conn);
+            echo "write the prescription";
         }
     } else {
-        echo "Error: Drug ID not found.";
+        echo "Error: Invalid patient username.";
     }
 }
 ?>
