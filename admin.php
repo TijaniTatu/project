@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 // Check if the user is logged in as admin
@@ -6,6 +7,8 @@ if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] && $_SESSION["user_n
     // Retrieve the admin's information from the session
     $adminUserName = $_SESSION["user_name"];
     // You can retrieve additional information from the database if needed
+}
+require_once("connection.php");
 ?>
 
 <!DOCTYPE html>
@@ -72,102 +75,93 @@ if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] && $_SESSION["user_n
     <div id="viewPatients" class="tab-content">
     <?php
     
-require_once("database.php");
 
     // Fetch patients from the database
-    $sql = "SELECT * FROM patients";
-    
-$result = $conn->query($sql);
+    $sql = "SELECT * FROM add_patients";
+    $result = $conn->query($sql);
+
     // Check if any patients were found
-    if ($result) {
-        if ($result->num_rows > 0) {
-            // Output the patient data as a table
-            echo "<table>
-                    <tr>
-                        <th>User Name</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Age</th>
-                        <th>Address</th>
-                        <th>Email Address</th>
-                        <th>Phone Number</th>
-                        <th>Action</th>
-                    </tr>";
+    if ($result && $result->num_rows > 0) {
+        // Output the patient data as a table
+        echo "<table>
+                <tr>
+                    <th>User Name</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Email Address</th>
+                    <th>Phone Number</th>
+                    <th>Action</th>
+                </tr>";
 
-            // Output each patient row as a table row
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["USER_NAME"] . "</td>";
-                echo "<td>" . $row["NAME"] . "</td>";
-                echo "<td>" . $row["AGE"] . "</td>";
-                echo "<td>" . $row["ADDRESS"] . "</td>";
-                echo "<td>" . $row["EMAIL_ADDRESS"] . "</td>";
-                echo "<td>" . $row["PHONE_NUMBER"] . "</td>";
-                echo '<td><button class="btn btn-primary"><a href="update.php?updateid=1" class="text-light">Update</a></button></td>';
-                echo '<td><button class="btn btn-danger"><a href="delete.php?deleteid=1"  class="text-light">Delete</a></button></td>';
-                echo "</tr>";
-            }
-
-            echo "</table>";
-        } else {
-            echo "No patients found.";
+        // Output each patient row as a table row
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["USER_NAME"] . "</td>";
+            echo "<td>" . $row["NAME"] . "</td>";
+            echo "<td>" . $row["AGE"] . "</td>";
+            echo "<td>" . $row["ADDRESS"] . "</td>";
+            echo "<td>" . $row["EMAIL_ADDRESS"] . "</td>";
+            echo "<td>" . $row["PHONE_NUMBER"] . "</td>";
+            echo '<td><button class="btn btn-primary"><a href="update_patient.php?updateid=1" class="text-light">Update</a></button></td>';
+            echo '<td><button class="btn btn-danger"><a href="delete_patient.php?deleteid=1"  class="text-light">Delete</a></button></td>';
+            echo "</tr>";
         }
+
+        echo "</table>";
     } else {
-        echo "Error retrieving patient data: " . $conn->error;
+        echo "No patients found.";
     }
 
-   
+    
+    echo '<td><button class="btn btn-danger"><a href="addpatient_admin.php" class="text-light">Add Patient</a></button></td>';
+
     ?>
 </div>
+
 
     
     <div id="viewDoctors" class="tab-content">
     <?php
     
-    require_once("database.php");
-    
-        // Fetch patients from the database
-        $sql = "SELECT * FROM doctors";
-        $result = $conn->query($sql);
-    
-        // Check if any patients were found
-        if ($result) {
-            if ($result->num_rows > 0) {
-                // Output the patient data as a table
-                echo "<table>
-                        <tr>
-                            <th>User Name</th>
-                            <th>Name</th>
-                            <th>speciality</th>
-                            <th>years of experience</th>
-                            <th>email_address</th>
-                            <th>Action</th>
-                        </tr>";
-    
-                // Output each patient row as a table row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["USER_NAME"] . "</td>";
-                    echo "<td>" . $row["NAME"] . "</td>";
-                    echo "<td>" . $row["SPECIALITY"] . "</td>";
-                    echo "<td>" . $row["YRS_OF_EXPERIENCE"] . "</td>";
-                    echo "<td>" . $row["EMAIL_ADDRESS"] . "</td>";
-                    echo '<td><button class="btn btn-primary"><a href="update.php?updateid=1" class="text-light">Update</a></button></td>';
-                    echo '<td><button class="btn btn-danger"><a href="delete.php?deleteid=1"  class="text-light">Delete</a></button></td>';
-                    echo "</tr>";
-                }
-    
-                echo "</table>";
-            } else {
-                echo "No doctors found.";
-            }
-        } else {
-            echo "Error retrieving doctors data: " . $conn->error;
+
+    // Fetch patients from the database
+    $sql = "SELECT * FROM doctors_login";
+    $result = $conn->query($sql);
+
+    // Check if any patients were found
+    if ($result && $result->num_rows > 0) {
+        // Output the patient data as a table
+        echo "<table>
+                <tr>
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Speciality</th>
+                    <th>Years of experience</th>
+                
+                </tr>";
+
+        // Output each patient row as a table row
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["USER_NAME"] . "</td>";
+            echo "<td>" . $row["NAME"] . "</td>";
+            echo "<td>" . $row["SPECIALITY"] . "</td>";
+            echo "<td>" . $row["YRS_OF_EXPERIENCE"] . "</td>";
+            echo '<td><button class="btn btn-primary"><a href="update_doctors.php?updateid=1" class="text-light">Update</a></button></td>';
+            echo '<td><button class="btn btn-danger"><a href="delete_doctors.php?deleteid=1"  class="text-light">Delete</a></button></td>';
+            echo "</tr>";
         }
+
+        echo "</table>";
+    } else {
+        echo "No patients found.";
+    }
+
     
-        // Close the database connection
-        $conn->close();
-        ?>
+    echo '<td><button class="btn btn-danger"><a href="adddoctor_admin.php" class="text-light">Add Doctor</a></button></td>';
+
+    ?>
     </div>
     
     <div id="viewPharmacies" class="tab-content">
@@ -191,7 +185,3 @@ $result = $conn->query($sql);
     </div>
 </body>
 </html>
-
-<?php
-}
-?>
