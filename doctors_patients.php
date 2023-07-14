@@ -4,7 +4,7 @@
     <title>Doctor Dashboard - Patients</title>
 </head>
 <body>
-    <h1>Doctor Dashboard - Patients</h1>
+    <h1>Patients</h1>
 
     <?php
     require_once("database.php");
