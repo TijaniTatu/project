@@ -14,7 +14,7 @@
 
     <input type="submit" name="submit" value="Delete">
       <?php
-  require("connection.php");
+  require("database.php");
   // Check if the form is submitted
   if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve form dat

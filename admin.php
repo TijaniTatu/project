@@ -8,7 +8,7 @@ if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] && $_SESSION["user_n
     $adminUserName = $_SESSION["user_name"];
     // You can retrieve additional information from the database if needed
 }
-require_once("connection.php");
+require_once("database.php");
 ?>
 
 <!DOCTYPE html>
