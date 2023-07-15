@@ -41,10 +41,10 @@
 </head>
 <body>
     <ul class="navbar">
-        <li><a href="#">Home</a></li>  
         <li><a href="orders.php">Orders</a></li>
         <li><a href="drug_management.php">Drug management</a></li>
         <li><a href="inventory.php">Inventory</a></li>
+        <li><a href="dispense_history.php">History</a></li>
         <li style="float: centre;"><a href="#">Logout</a></li>
     </ul>
 

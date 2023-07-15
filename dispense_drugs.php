@@ -30,12 +30,14 @@
             echo "<p><strong>Dosage:</strong> " . $prescription["DOSAGE"] . "</p>";
             echo "<p><strong>Instruction:</strong> " . $prescription["INSTRUCTION"] . "</p>";
 
-            // Form to enter the quantity being dispatched
+            // Form to enter the quantity and dispense date
             echo "<h2>Dispense Drugs</h2>";
             echo "<form action='process_dispense.php' method='post'>";
             echo "<input type='hidden' name='prescriptionId' value='$prescriptionId'>";
             echo "<label for='quantity'>Quantity:</label>";
-            echo "<input type='number' name='quantity' id='quantity' min='1' required>";
+            echo "<input type='number' name='quantity' id='quantity' min='1' required><br>";
+            echo "<label for='dispenseDate'>Dispense Date:</label>";
+            echo "<input type='date' name='dispenseDate' id='dispenseDate' required><br>";
             echo "<input type='submit' value='Dispense'>";
             echo "</form>";
         } else {
